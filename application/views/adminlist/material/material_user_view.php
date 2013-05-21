@@ -1,9 +1,7 @@
-
-
-<?php
-for($i=0;count($material_user)>$i;$i++){
-?>
 <form method="POST" name="material_user" >
+<?php
+foreach ($query->result() as $key => $row){
+?>
 	ID:<input type="text" name="contact_id"  value="<?php echo $material_user[$i]["contact_id"]; ?>" />
 	氏名:<input type="text" name="contact_name"  value="<?php echo $material_user[$i]["contact_name"]; ?>" />
 	日付と時刻（受付日）:<input type="text" name="contact_date" value="<?php echo $material_user[$i]["contact_date"]; ?>" /><br /></br>	

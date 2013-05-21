@@ -23,21 +23,23 @@ class Admin extends CI_Controller {
 		//ログインした時にデータを取得
 		$data["material_user"] = $this->admin_model->all_get_material();
 		//更新した際の処理
-		if($this->input->post('contact_name')!=NULL){
-			foreach(){
-			$data["material_user"][$i] = array(
-				'contact_id' => $this->input->post('contact_id'),			
-				'contact_name' => $this->input->post('contact_name'),
-				'contact_reien' => $this->input->post('contact_reien'),
-				'contact_date' => date("Y-m-d")
-			);
-//			print_r($data["material_user"]);
-			$this->db->where('contact_id', $data["material_user"][$i]["contact_id"]);
-			$this->db->update('material', $data["material_user"][$i]);		
+//		print_r($this->input->post('contact_name'));
+
+		//条件をpostした時に変更
+		 if($this->input->post('contact_name')!=NULL){
 			
-			print_r($data["material_user"][$i]);
-			}
-		}
+				$data["post_material_user"] = array(
+					'contact_id' => $this->input->post('contact_id'),			
+					'contact_name' => $this->input->post('contact_name'),
+					'contact_reien' => $this->input->post('contact_reien'),
+					'contact_data' =>  date("Y-m-d")
+				);
+			  // $this->db->where('contact_id', $data["post_material_user"]["contact_id"][$i]);
+			  // $this->db->update('materia', $data["post_material_user"][0]);		
+			  }
+		 // }
+
+			 print_r($data["post_material_user"]);
 
 	$data["material_user"] = $this->admin_model->all_get_material(); 
 	$this->load->view('adminlist/material/material_user_view',$data);
