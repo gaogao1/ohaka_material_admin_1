@@ -6,7 +6,18 @@
 			//database.phpで定義したDBに接続する
 			$this->load->database();
 	}
-		
+
+		 function id_get_material_log($id){
+		 	$query = $this->db->query('SELECT * FROM `material_log` WHERE log_contact_id = '.$id);
+			$data = $query->result_array();
+        	return $data;
+		 }
+		 
+		 function logid_get_material_log($id){
+		 	$query = $this->db->query('SELECT * FROM `material_log` WHERE log_id = '.$id);
+			$data = $query->result_array();
+        	return $data;
+		 }		 
 
 		 function all_get_material(){
 		 	$query = $this->db->query('SELECT * FROM `material` LIMIT 0 , 5');
@@ -14,6 +25,14 @@
         	return $data;
 		 }
 
+		 function id_get_material($id){
+		     $query = $this->db->query('SELECT * FROM material WHERE contact_id = '.$id);
+            $data = $query->result_array();
+            return $data;
+		 }		
+				 
+		 
+		 
 
 // ----------------------------------------------------以下既存コード
 		

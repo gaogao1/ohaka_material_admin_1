@@ -22,28 +22,83 @@ class Admin extends CI_Controller {
 	public function material_user(){
 		//ログインした時にデータを取得
 		$data["material_user"] = $this->admin_model->all_get_material();
+		
 		//更新した際の処理
-//		print_r($this->input->post('contact_name'));
-
-		//条件をpostした時に変更
-		 if($this->input->post('contact_name')!=NULL){
-			
-				$data["post_material_user"] = array(
-					'contact_id' => $this->input->post('contact_id'),			
-					'contact_name' => $this->input->post('contact_name'),
-					'contact_reien' => $this->input->post('contact_reien'),
-					'contact_data' =>  date("Y-m-d")
-				);
-			  // $this->db->where('contact_id', $data["post_material_user"]["contact_id"][$i]);
-			  // $this->db->update('materia', $data["post_material_user"][0]);		
-			  }
-		 // }
-
-			 print_r($data["post_material_user"]);
-
-	$data["material_user"] = $this->admin_model->all_get_material(); 
-	$this->load->view('adminlist/material/material_user_view',$data);
+		if($this->input->post('submit')!=NULL){
+			for($i=0;$i<count($this->input->post('post_data'));$i++){
+				$data = array(
+					'post_data' => $this->input->post('post_data'),			
+				 );				 
+				$this->db->where('contact_id', $data["post_data"][$i]["contact_id"]);
+				$this->db->update('material', $data["post_data"][$i]);		
+			}
+		}
+		$data["material_user"] = $this->admin_model->all_get_material(); 
+		$this->load->view('adminlist/material/material_user_view',$data);
 	}
+	
+	
+	
+	
+	public function material_user_detail(){
+	//ページ遷移した時にデータを取得
+	$data["detail"] = $this->admin_model->id_get_material($this->input->get("id",TRUE));
+	//更新した際の処理
+	if($this->input->post('submit')!=NULL){
+			$data["detail"] = array(
+				'contact_id' => $this->input->post('contact_id'),			
+				'contact_name' => $this->input->post('contact_name'),
+				'contact_reien' => $this->input->post('contact_reien'),
+				'contact_date' =>  $this->input->post('contact_date')
+			);				
+		$this->db->where('contact_id', $data["detail"]["contact_id"]);
+		$this->db->update('material', $data["detail"]);
+		$data['detail'] = $this->admin_model->id_get_material($this->input->get("id",TRUE));
+	}
+	$this->load->view('adminlist/material/material_user_detail_view',$data);
+	}
+	
+	
+	public function material_user_log(){
+	//ページ遷移した時にデータを取得
+	$data["log"] = $this->admin_model->id_get_material_log($this->input->get("id",TRUE));
+	
+	// print_r($this->input->post('post_data'));
+
+	//更新した際の処理
+/*		if($this->input->post('submit')!=NULL){
+			for($i=0;$i<count($this->input->post('post_data'));$i++){
+				$data = array(
+					'post_data' => $this->input->post('post_data'),			
+				 );		 
+			$this->db->where('log_id', $data["post_data"][$i]["log_id"]);
+			$this->db->update('material_log', $data["post_data"][$i]);		
+			}
+		}
+*/		
+	//新規のデータがあった場合
+	print_r($this->input->post('post_data'));
+	print_r($this->input->post('new_post_data'));
+	
+		if($this->input->post('new_post_data')!=NULL){
+			for($i=0;$i<count($this->input->post('post_data'));$i++){
+				$data = array(
+					'post_data' => $this->input->post('post_data'),			
+				 );		 
+//			$this->db->where('log_id', $data["post_data"][$i]["log_id"]);
+			$this->db->insert('material_log', $data["post_data"][$i]);		
+			}
+		}	
+	
+	
+	
+	
+	
+	$data["log"] = $this->admin_model->id_get_material_log($this->input->get("id",TRUE));		
+	$this->load->view('adminlist/material/material_user_log_view',$data);
+	}	
+	
+	
 
 }		
 /* End of file welcome.php */
