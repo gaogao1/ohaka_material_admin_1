@@ -25,20 +25,15 @@ for($i=0;$i<count($log);$i++){
 			<OPTION value="3"> ▽見学済 </OPTION>
 			</SELECT><br /></br>	
 			-->
-<?php //echo 'contact_id'."[$i]"."[name]"; ?>
 <?php 
 }
-?>
-
-		<input type="hidden" name="<?php echo 'new_post_data'."[0]"."[log_id]"; ?>"  value="" />
+?>			
+			
+		<input type="hidden" name="<?php echo 'new_post_data'."[0]"."[log_contact_id]"; ?>"  value="<?php echo $log[0]["log_contact_id"]; ?>" />
 	氏名:<input type="text" name="<?php echo 'new_post_data'."[0]"."[log_name]"; ?>"  value="" />
-	日付と時刻（受付日）:<input type="text" name="<?php echo 'new_post_data'."[0]"."[log_text]"; ?>" value="" /><br /><br />
+	日付と時刻（受付日）:<input type="text" name="<?php echo 'new_post_data'."[0]"."[log_text]"; ?>" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" /><br /><br />
+
 
 
 <input type="submit" value="実行" name="submit">					
 </form>	
-
-
-
-
-

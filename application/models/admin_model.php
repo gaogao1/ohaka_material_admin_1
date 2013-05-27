@@ -76,6 +76,14 @@ if( isset($data[0]) ){
         	return $data;
 		 }
 		 
+		 function get_year_Material($year){
+		 	$query = $this->db->query('SELECT *,YEAR(contact_date) FROM material INNER JOIN stone on material.contact_stone = stone.stone_id INNER JOIN ohaka on material.contact_reien = ohaka.ohaka_id WHERE YEAR(contact_date) = '.$year);
+			$data = $query->result_array();
+        	return $data;
+		 }		 
+		 
+		 
+		 
 		 function getMaterial_search($month,$str){
 		     $sql = 'SELECT *,MONTH(contact_date) FROM material INNER JOIN stone on material.contact_stone = stone.stone_id INNER JOIN ohaka on material.contact_reien = ohaka.ohaka_id WHERE MONTH(contact_date) = '.$month.' and contact_name like ?'; 
 		    //$query = $this->db->query('SELECT *,MONTH(contact_date) FROM material INNER JOIN stone on material.contact_stone = stone.stone_id INNER JOIN ohaka on material.contact_reien = ohaka.ohaka_id WHERE MONTH(contact_date) = '.$month.' and contact_name like ?');
