@@ -1,6 +1,5 @@
 <form method="POST" name="material_user" >
 <?php
-if($log != null){
 for($i=0;$i<count($log);$i++){
 ?>
 		<input type="hidden" name="<?php echo 'post_data'."[$i]"."[log_id]"; ?>"  value="<?php echo $log[$i]["log_id"]; ?>" />
@@ -27,13 +26,10 @@ for($i=0;$i<count($log);$i++){
 			</SELECT><br /></br>	
 			-->
 <?php 
-}}
-
-$user_id= $_SERVER['REQUEST_URI'];
-$user_id = explode("=",$user_id);
+}
 ?>			
 			
-		<input type="hidden" name="<?php echo 'new_post_data'."[0]"."[log_contact_id]"; ?>"  value="<?php echo $user_id[1]; ?>" />
+		<input type="hidden" name="<?php echo 'new_post_data'."[0]"."[log_contact_id]"; ?>"  value="<?php echo $log[0]["log_contact_id"]; ?>" />
 	氏名:<input type="text" name="<?php echo 'new_post_data'."[0]"."[log_name]"; ?>"  value="" />
 	日付と時刻（受付日）:<input type="text" name="<?php echo 'new_post_data'."[0]"."[log_text]"; ?>" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" /><br /><br />
 

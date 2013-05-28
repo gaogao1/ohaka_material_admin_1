@@ -1,11 +1,10 @@
 <form method="POST" name="material_user" >
 <?php
-if($log != null){
-for($i=0;$i<count($log);$i++){
+
 ?>
-		<input type="hidden" name="<?php echo 'post_data'."[$i]"."[log_id]"; ?>"  value="<?php echo $log[$i]["log_id"]; ?>" />
-	氏名:<input type="text" name="<?php echo 'post_data'."[$i]"."[log_name]"; ?>"  value="<?php echo $log[$i]["log_name"]; ?>" />
-	日付と時刻（受付日）:<input type="text" name="<?php echo 'post_data'."[$i]"."[log_text]"; ?>" value="<?php echo $log[$i]["log_text"]; ?>" /><br /><br />
+	ID:<?php echo $detail[0]["contact_id"]; ?>
+	氏名:<input type="text" name="contact_name"  value="<?php echo $detail[0]["contact_name"]; ?>" />
+	日付と時刻（受付日）:<input type="text" name="contact_date" value="<?php echo $detail[0]["contact_date"]; ?>" /><br /></br>	
 <!--
 	経過日数:<input type="text" name="keika_day" /><br />	</br>
 	石材店名	請求霊園一覧:<input type="text" name="contact_reien" /><br /></br>	
@@ -26,18 +25,11 @@ for($i=0;$i<count($log);$i++){
 			<OPTION value="3"> ▽見学済 </OPTION>
 			</SELECT><br /></br>	
 			-->
+
 <?php 
-}}
 
-$user_id= $_SERVER['REQUEST_URI'];
-$user_id = explode("=",$user_id);
-?>			
-			
-		<input type="hidden" name="<?php echo 'new_post_data'."[0]"."[log_contact_id]"; ?>"  value="<?php echo $user_id[1]; ?>" />
-	氏名:<input type="text" name="<?php echo 'new_post_data'."[0]"."[log_name]"; ?>"  value="" />
-	日付と時刻（受付日）:<input type="text" name="<?php echo 'new_post_data'."[0]"."[log_text]"; ?>" value="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" /><br /><br />
-
-
-
+?>
 <input type="submit" value="実行" name="submit">					
 </form>	
+
+

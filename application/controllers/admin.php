@@ -35,21 +35,28 @@ class Admin extends CI_Controller {
 				$this->db->update('material', $data["post_data"][$i]);		
 			}
 		}
-
-		if($_SERVER['REQUEST_URI'] =='/admin/material_user/?day=4'){
-			$data["material_user"] = $this->admin_model-> getMaterial(4);
+		
+		//月ごとのデータ取得		
+		for($i=1;$i<13;$i++){
+			if($_SERVER['REQUEST_URI'] =='/admin/material_user?day='.$i){
+				$data["material_user"] = $this->admin_model-> getMaterial($i);
+			}
+			elseif($_SERVER['REQUEST_URI'] =='/admin/material_user'){
+				$data["material_user"] = $this->admin_model-> getMaterial($month);
+			}
 		}
-		elseif($_SERVER['REQUEST_URI'] =='/admin/material_user/?day=3'){
-			$data["material_user"] = $this->admin_model->all_get_material(3); 
+
+		for($i=2012;$i<2013;$i++){
+			if($_SERVER['REQUEST_URI'] =='/admin/material_user?year='.$i){
+				$data["material_user"] = $this->admin_model->get_year_Material($year);
+			}
 		}		
-		elseif($_SERVER['REQUEST_URI'] =='/admin/material_user/?day=all'){
-			$data["material_user"] = $this->admin_model->all_get_material(); 
-
-		}elseif($_SERVER['REQUEST_URI'] =='/admin/material_user/?year=2012'){
-			$data["material_user"] = $this->admin_model->get_year_Material($year); 
-
-			}else{
-			$data["material_user"] = $this->admin_model-> getMaterial($month);		
+		
+		
+		
+		//各霊園名を取得
+		for($i=0;$i<count($data["material_user"]);$i++){
+			$data["material_reien_name"][] = $this->admin_model->get_data_by_id_stone($data["material_user"][$i]["contact_reien"]);		
 		}
 		
 		$this->load->view('adminlist/material/material_user_view',$data);
@@ -81,8 +88,20 @@ class Admin extends CI_Controller {
 	//ページ遷移した時にデータを取得
 	$data["log"] = $this->admin_model->id_get_material_log($this->input->get("id",TRUE));
 
+
+		
+	//新規のデータがあった場合
+			if($this->input->post('new_post_data')!=NULL){	
+				$data = array(
+					'new_post_data' => $this->input->post('new_post_data'),			
+				);				 
+			if($data["new_post_data"][0]["log_name"] != null){
+				$this->db->insert('material_log', $data["new_post_data"][0]);
+			}	
+			}
+
 	//更新した際の処理
-		if($this->input->post('submit')!=NULL){
+		if($this->input->post('post_data')!=NULL){
 			for($i=0;$i<count($this->input->post('post_data'));$i++){
 				$data = array(
 					'post_data' => $this->input->post('post_data'),			
@@ -91,15 +110,7 @@ class Admin extends CI_Controller {
 			$this->db->update('material_log', $data["post_data"][$i]);		
 			}
 		}
-		
-	//新規のデータがあった場合
-			$data = array(
-				'new_post_data' => $this->input->post('new_post_data'),			
-				 );						 
-			if($data["new_post_data"][0]["log_name"] != null){
-				$this->db->insert('material_log', $data["new_post_data"][0]);
-			}	
-		
+
 	$data["log"] = $this->admin_model->id_get_material_log($this->input->get("id",TRUE));		
 	$this->load->view('adminlist/material/material_user_log_view',$data);
 	}
