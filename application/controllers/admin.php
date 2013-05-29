@@ -20,10 +20,6 @@ class Admin extends CI_Controller {
     }
    
 	public function material_user(){
-		//今月のデータ
-		$month = date('n');
-		//去年のデータ
-		$year = date('Y')-1;
 
 		//更新した際の処理
 		if($this->input->post('submit')!=NULL){
@@ -35,28 +31,19 @@ class Admin extends CI_Controller {
 				$this->db->update('material', $data["post_data"][$i]);		
 			}
 		}
-		
 		//月ごとのデータ取得		
-		for($i=1;$i<13;$i++){
-			if($_SERVER['REQUEST_URI'] =='/admin/material_user?day='.$i){
-				$data["material_user"] = $this->admin_model-> getMaterial($i);
-			}
-			elseif($_SERVER['REQUEST_URI'] =='/admin/material_user'){
-				$data["material_user"] = $this->admin_model-> getMaterial($month);
-			}
+		if(empty($_GET['year'])){
+			$year = date('Y');		
+			$data["material_user"] = $this->admin_model-> get_year_Material($year);//今年の月
+		}else{
+			$year = $_GET['year'];
+			$month = $_GET['month'];	
+			$data["material_user"] = $this->admin_model-> date_get_material($year,$month);
 		}
-
-		for($i=2012;$i<2013;$i++){
-			if($_SERVER['REQUEST_URI'] =='/admin/material_user?year='.$i){
-				$data["material_user"] = $this->admin_model->get_year_Material($year);
-			}
-		}		
-		
-		
 		
 		//各霊園名を取得
 		for($i=0;$i<count($data["material_user"]);$i++){
-			$data["material_reien_name"][] = $this->admin_model->get_data_by_id_stone($data["material_user"][$i]["contact_reien"]);		
+			$data["material_reien_name"][$i] = $this->admin_model->get_data_by_id($data["material_user"][$i]["contact_reien"]);		
 		}
 		
 		$this->load->view('adminlist/material/material_user_view',$data);
@@ -71,11 +58,24 @@ class Admin extends CI_Controller {
 	//更新した際の処理
 	if($this->input->post('submit')!=NULL){
 			$data["detail"] = array(
-				'contact_id' => $this->input->post('contact_id'),			
-				'contact_name' => $this->input->post('contact_name'),
-				'contact_reien' => $this->input->post('contact_reien'),
+				'contact_id' => $this->input->post('contact_id'),		
+				'contact_name' => $this->input->post('contact_name'),				
+				'contact_ad_id' => $this->input->post('contact_ad_id'),					
+				'contact_address' => $this->input->post('contact_address'),
+				'contact_tel' => $this->input->post('contact_tel'),
+				'contact_mail' => $this->input->post('contact_mail'),
+				'contact_age' => $this->input->post('contact_age'),
+				'contact_amount_min' => $this->input->post('contact_amount_min'),
+				'contact_amount_max' => $this->input->post('contact_amount_max'),
+				'contact_fin' => $this->input->post('contact_fin'),
+				'contact_engin' => $this->input->post('contact_engin'),
+				'contact_device' => $this->input->post('contact_device'),
+				'contact_search_engin' => $this->input->post('contact_search_engin'),
+				'contact_search_key' => $this->input->post('contact_search_key'),
+				'contact_chara' => $this->input->post('contact_chara'),
+				'contact_detail' => $this->input->post('contact_detail'),
 				'contact_date' =>  $this->input->post('contact_date')
-			);				
+				);				
 		$this->db->where('contact_id', $data["detail"]["contact_id"]);
 		$this->db->update('material', $data["detail"]);
 		$data['detail'] = $this->admin_model->id_get_material($this->input->get("id",TRUE));

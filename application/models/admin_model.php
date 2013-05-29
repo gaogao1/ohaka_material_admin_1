@@ -25,6 +25,12 @@
         	return $data;
 		 }
 
+		 function  date_get_material($year,$month){
+		 	$query = $this->db->query('SELECT * FROM material WHERE (YEAR(contact_date) = '.$year.') And (MONTH(contact_date) = '.$month.')');
+			$data = $query->result_array();
+        	return $data;
+		 }		 
+		 
 		 function id_get_material($id){
 		     $query = $this->db->query('SELECT * FROM material WHERE contact_id = '.$id);
             $data = $query->result_array();

@@ -1,205 +1,153 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
 	<meta charset="UTF-8">
+	<title>Ohaka Admin</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Customer Detail Page</title>
-	<link rel="stylesheet" href="/css/com/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/com/bootstrap-responsive.min.css">
-	<link rel="stylesheet" href="/css/com/stylesheet.css">
-	<script src="/js/com/jquery-1.9.1.min.js"></script>	
-	<!--[if lt IE 8]>
-		<link rel="stylesheet" href="css/ie.css">
-		<script src="js/ie.js"></script>
-	<![endif]-->
-	<script type="text/javascript">
-function back(){
-    history.go(-1);
-}
-</script>
+	<link rel="stylesheet" href="../user_guide/css/stylesheet.css">
+	<style>
+	.user_detail tr{
+		height:50px;
+	}
+	</style>
+
+	<script src="../user_guide/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
-	<div class="navbar">
-		<div class="navbar-inner">
-			<ul class="nav pull-right">
-				<li class="dropdown">
-					<a href="#" id="dropdown" role="button" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-user"></i>
-							Administrator
-						<i class=" icon-arrow-down"></i>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a tab-index="-1" href="#">My Account</a></li>
-						<li class="divider"></li>
-						<li><a tab-index="-1" href="#">Logout</a></li>
-					</ul>
-				</li>
-			</ul>
-			<a href="../index.php/com/top" class="brand"></a>
-		</div>
-	</div>
-	<div class="content content-detail">
+	<div class="container">
 		<div class="header">
-			<h1 class="page-title">お客様情報</h1>
-		</div>
-		<!-- end header -->
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="customer-list">
-					<div class="customer-body">
-						<table class="table-customer table table-bordered">
-							<tbody>
-								<form method="post" action="detail_fin?id=<?php echo $detail[0]["contact_id"]; ?>" >
-									<tr>
-										<td class="td-right">＊お名前</td>
-                                        <td>
-											<input type="text" class="td-right" name="contact_name" size="80" value="<?php echo $detail[0]["contact_id"]; ?>">
-										</td>
-									</tr>
-									<tr>
-										<td class="td-right">＊ふりがな</td>
-                                                                        <td><input type="text" class="td-right" name="contact_kana" size="80" value="<?php echo $detail[0]["contact_id"]; ?>"></td>
-
-                                                                </tr>
-								<tr>
-									<td class="td-right">＊郵便番号</td>
-								        <td><input type="text" class="td-right" name="contact_ad_id" size="80" value="<?php echo $detail[0]["contact_id"]; ?>"></td>
-
-                                                                </tr>
-								<tr>
-									<td class="td-right">＊ご住所</td>
-								        <td><input type="text" class="td-right" name="contact_address" size="80" value="<?php echo $detail[0]["contact_id"]; ?>"></td>
-
-                                                                </tr>
-								<tr>
-									<td class="td-right">＊電話番号</td>
-								         <td><input type="text" class="td-right" name="contact_tel" size="80" value="<?php echo $detail[0]["contact_id"]; ?>"></td>
-
-                                                                </tr>
-								<tr>
-									<td class="td-right">メールアドレス</td>
-								         <td><input type="text" class="td-right" name="contact_mail" size="80" value="<?php echo $detail[0]["contact_id"]; ?>"></td>
-
-                                                                </tr>	
-								<tr>
-									<td class="td-right">ご希望の完成時期</td>
-								         <td>
-                                                                            <select name="contact_fin">
-                                                                        　　<option value="<?php echo $detail[0]["contact_id"]; ?>>" selected><?php echo $detail[0]["contact_id"]; ?></option>
-                                                                            <option value="すぐにでも">すぐにでも</option>
-                                                                          <option value="3ヶ月以内">3ヶ月以内</option>
-                                                                         　<option value="6ヶ月以内">6ヶ月以内</option>
-                                                                           <option value="1年以内">1年以内</option>
-                                                                         　<option value="未定">未定</option>
-                                                                            </select>                     
-                                                                </td>             
-
-                                                                </tr>	
-								<tr>
-									<td class="td-right">予算の上限</td>
-                                                                     
-								        <td>
-                                                                            <select name="contact_amount_min">
-                                                                        　　<option value="<?php echo $detail[0]["contact_id"]; ?>" selected><?php echo $detail[0]["contact_id"]; ?></option>
-                                                                            <option value="下限なし">下限なし</option>
-                                                                          <option value="10万円">10万円</option>
-                                                                         　<option value="20万円">20万円</option>
-                                                                           <option value="30万円">30万円</option>
-                                                                         　<option value="40万円">40万円</option>
-                                                                            <option value="50万円">50万円</option>
-                                                                         　<option value="75万円">75万円</option>
-                                                                           <option value="100万円">100万円</option>
-                                                                         　<option value="150万円">150万円</option>
-                                                                           <option value="200万円">200万円</option>
-                                                                         　<option value="250万円">250万円</option>
-                                                                            </select>  
-                                                                            
-                                                                            ～
-                                                                             <select name="contact_amount_max">                                                                               
-                                                                        　　<option value="<?php echo $detail[0]["contact_id"]; ?>" selected><?php echo $detail[0]["contact_id"]; ?></option>
-                                                                            <option value="上限なし">上限なし</option>  
-                                                                          <option value="10万円">10万円</option>
-                                                                         　<option value="20万円">20万円</option>
-                                                                           <option value="30万円">30万円</option>
-                                                                         　<option value="40万円">40万円</option>
-                                                                            <option value="50万円">50万円</option>
-                                                                         　<option value="75万円">75万円</option>
-                                                                           <option value="100万円">100万円</option>
-                                                                         　<option value="150万円">150万円</option>
-                                                                           <option value="200万円">200万円</option>
-                                                                         　<option value="250万円">250万円</option>
-                                                                            </select>                                                                       
-                                                                        </td>
-                                                                    
-                                                                </tr>									
-								<tr>
-									<td class="td-right">その他・ご意見</td>
-                                                                        <td><textarea  name="contact_detail" class="other-new"><?php echo $detail[0]["contact_id"]; ?></textarea></td>
-								</tr>								
-							</tbody>
-						</table>
-						<p>
-							<input type="submit" class="button btn-backr" onclick="back()">
-                                                        <input type="submit" class="button btn-update">
-						</p>
-					</div>
+			<h1 class="branding"><a href="">お墓探しナビ	管理画面</a></h1>
+			<div class="navbar">
+				<div class="row">
 				</div>	
 			</div>
 		</div>
-		<!-- end main content -->
-		<div class="footer">
-			<div class="container-fluid">
-				<hr>
-				<p class="copyright">Copyright &copy; 2013 givery.</p>
+		<!-- end header -->
+<form method="POST" name="material_user" >		
+		<div class="content">
+			<div class="row">
+				<div id="month1" class="tbl_content">
+					<table class="tbl_main user_detail">
+						<tr>
+							<input type="hidden" name="contact_id" value="<?php echo $detail[0]["contact_id"]; ?>">
+							<th>名前</th>
+							<td><input type="text" name="contact_name" value="<?php echo $detail[0]["contact_name"]; ?>" /></td>						
+						</tr>
+						<tr>
+							<th>郵便番号</th>
+							<td><input type="text" name="contact_ad_id" value="<?php echo $detail[0]["contact_ad_id"]; ?>" /></td>
+						</tr>
+						<tr>
+							<th>住所</th>
+							<td><input type="text" name="contact_address" value="<?php echo $detail[0]["contact_address"]; ?>" /></td>
+						</tr>
+						<tr>
+							<th>電話番号</th>
+							<td><input type="text" name="contact_tel" value="<?php echo $detail[0]["contact_tel"]; ?>" /></td>
+						</tr>
+						<tr>
+							<th>メールアドレス</th>
+							<td><input type="text" name="contact_mail" value="<?php echo $detail[0]["contact_mail"]; ?>" /></td>
+						</tr>
+						<tr>
+							<th>年齢</th>
+							<td><input type="text" name="contact_age" value="<?php echo $detail[0]["contact_age"]; ?>" /></td>
+						</tr>
+						<tr>
+							<th>予算下限-上限</th>
+							<td>
+								<select name="contact_amount_min" id="">
+									<option value="<?php echo $detail[0]["contact_amount_min"]; ?>" selected><?php echo $detail[0]["contact_amount_min"]; ?></option>								
+									<option value="10">10</option>
+									<option value="20">20</option>
+								</select>
+								-
+								<select name="contact_amount_max" id="">
+									<option value="<?php echo $detail[0]["contact_amount_max"]; ?>" selected><?php echo $detail[0]["contact_amount_max"]; ?></option>									
+									<option value="10">10</option>
+									<option value="20">20</option>
+								</select>
+								万円
+							</td>
+						</tr>
+						<tr>
+							<th>完成時期</th>
+								<td>
+									<select name="contact_fin" id="">
+									<option value="<?php echo $detail[0]["contact_fin"]; ?>" selected><?php echo $detail[0]["contact_fin"]; ?></option>										
+									  <option value="2013">2013</option>
+									  <option value="2014">2014</option>
+									</select> 
+								</td>
+						</tr>
+						<tr>
+							<th>接触方法</th>
+							<td>
+								<select name="contact_engin" id="">
+									<option value="<?php echo $detail[0]["contact_engin"]; ?>" selected><?php echo $detail[0]["contact_engin"]; ?></option>										
+									<option value="コール">コール</option>
+									<option value="メール">メール</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>PC or SP</th>
+							<td>
+								<select name="contact_device" id="">
+									<option value="<?php echo $detail[0]["contact_device"]; ?>" selected><?php echo $detail[0]["contact_device"]; ?></option>											
+									<option value="pc">PC</option>
+									<option value="sp">SP</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>検索エンジン</th>
+							<td>
+								<select name="contact_search_engin" id="">	
+									<option value="<?php echo $detail[0]["contact_search_engin"]; ?>" selected><?php echo $detail[0]["contact_search_engin"]; ?></option>							
+									<option value="google">google</option>
+									<option value="yahoo">yahoo</option>
+									<option value="bing">bing</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>検索KW</th>
+							<td>
+								<input type="text" name="contact_search_key" value="<?php echo $detail[0]["contact_search_key"]; ?>" />
+							</td>
+						</tr>
+						<tr>
+							<th>お客様の特徴</th>
+							<td><textarea placeholder="contact_char"  name="contact_char" ><?php echo $detail[0]["contact_chara"]; ?></textarea></td>
+						</tr>
+						<tr>
+							<th>資料請求意見</th>
+							<td><textarea placeholder="contact_detail"  name="contact_detail"><?php echo $detail[0]["contact_detail"]; ?></textarea></td>
+						</tr>
+					</table>
+					<div class="event_tbl">
+						<div class="btn_group">
+							<input class="btn update" type="submit" value="更新"  name="submit">
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+</form>	
+		
+		<!-- end content -->
 	</div>
-	<!-- end content -->
-	<script src="/ohaka/js/jquery-1.9.1.min.js"></script>
-	<script src="/ohaka/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('input.button').hover(function() {
-				$(this).toggleClass('btn-back-hover'); // ie6
-			});
-		});
-	</script>
+	<!-- end container -->
+	<script src="../user_guide/js/vendor/jquery-1.9.1.min.js"></script>
+    <script src="../user_guide/js/main.js"></script>
+
 </body>
 </html>
-
-
-<form method="POST" name="material_user" >
-<?php
-
-?>
-	ID:<?php echo $detail[0]["contact_id"]; ?>
-	氏名:<input type="text" name="contact_name"  value="<?php echo $detail[0]["contact_name"]; ?>" />
-	日付と時刻（受付日）:<input type="text" name="contact_date" value="<?php echo $detail[0]["contact_date"]; ?>" /><br /></br>	
-<!--
-	経過日数:<input type="text" name="keika_day" /><br />	</br>
-	石材店名	請求霊園一覧:<input type="text" name="contact_reien" /><br /></br>	
-	ご紹介先霊園・墓地情報:<input type="text" name="text1" /><br /></br>
-	特記事項:<input type="text" name="contact_detail" /><br /></br>
-	担当:<input type="text" name="text1" /><br /></br>
-	手紙:<SELECT name ="ar">
-			<OPTION value="0"> - </OPTION>
-			<OPTION value="1"> ▽出す </OPTION>
-			<OPTION value="2"> ▽出さない </OPTION>
-			<OPTION value="3"> ▽済 </OPTION>
-			</SELECT><br /></br>
-	追客状況:<a href="">つい客状況</a><br /></br>
-	進捗:<SELECT name ="car">
-			<OPTION value="0"> - </OPTION>
-			<OPTION value="1"> ▽交渉中 </OPTION>
-			<OPTION value="2"> ▽見積もり </OPTION>
-			<OPTION value="3"> ▽見学済 </OPTION>
-			</SELECT><br /></br>	
-			-->
-
-<?php 
-
-?>
-<input type="submit" value="実行" name="submit">					
-</form>	
 
 

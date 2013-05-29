@@ -37,18 +37,20 @@ num_item=document.url.item.selectedIndex;
 					<form name="url">
 						<select name="item" onchange="jumpSelect()">
 							<option value="" selected="selected">2013</option>
-							<option value="?year=2012">2012</option>
+							<option value="?year=2013&month=4">2013</option>							
+							<option value="?year=2012&month=4">2012</option>
+							
 						</select>
 					</form>
 					</div>
 					<!-- /end select box -->
 					<div class="navigation">
 						<ul class="menu">
-							<li><a class="view" href="?day=1">1月</a></li>
-							<li><a class="view" href="?day=2">2月</a></li>
-							<li><a class="view" href="?day=3">3月</a></li>
-							<li><a class="view" href="?day=4">4月</a></li>
-							<li><a class="active" href="?day=5">5月</a></li>
+							<li><a class="view" href="?year=2013&month=1">1月</a></li>
+							<li><a class="view" href="?year=2013&month=2">2月</a></li>
+							<li><a class="view" href="?year=2013&month=3">3月</a></li>
+							<li><a class="view" href="?year=2013&month=4">4月</a></li>
+							<li><a class="active" href="?year=2013&month=5">5月</a></li>
 							<li><a href="?day=6">6月</a></li>
 							<li><a href="?day=7">7月</a></li>
 							<li><a href="?day=8">8月</a></li>
@@ -103,7 +105,7 @@ for($i=0;$i<count($material_user);$i++){
 							<input type="hidden" name="<?php echo 'post_data'."[$i]"."[contact_id]"; ?>" value="<?php echo $material_user[$i]["contact_id"]; ?>">
 							<td><a href="/admin/material_user_detail?id=<?php echo $material_user[$i]["contact_id"]; ?>"><?php echo $material_user[$i]["contact_name"]; ?></a></td>
 							<td><input type="text" name="<?php echo 'post_data'."[$i]"."[contact_date]"; ?>" value="<?php echo $material_user[$i]["contact_date"]; ?>" /></td>
-							<td><?php echo $material_user[$i]["contact_date"]; ?></td>
+							<td><?php echo floor((strtotime($material_user[$i]["contact_date"])-strtotime(date("Y-m-d h:i:s")))/(3600*24)); ?>日</td>
 							<td><input type="text" name="<?php echo 'post_data'."[$i]"."[contact_stone_name]"; ?>" value="<?php echo $material_user[$i]["contact_stone_name"]; ?>" /></td>
 							<td><?php print_r($material_reien_name[$i][0]["ohaka_name"]); ?></td>
 							<td><textarea placeholder="<?php echo $material_user[$i]["contact_other"]; ?>"  name="<?php echo 'post_data'."[$i]"."[contact_other]"; ?>" ></textarea></td>
