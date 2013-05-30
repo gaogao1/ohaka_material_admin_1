@@ -7,6 +7,15 @@
 			$this->load->database();
 	}
 
+		
+		 function duplicate_material($data){
+		 print_r($data);
+			for($i=0;$i<count($data);$i++){
+				$query = $this->db->query('INSERT INTO `material_log` (`log_id`,`log_contact_id`,`log_name`) VALUES ('.$data["log"][$i]["log_id"].',2,3) ON DUPLICATE KEY UPDATE `log_contact_id`=`log_contact_id`,`log_name`=(4)');
+			}
+			}
+	
+	
 		 function id_get_material_log($id){
 		 	$query = $this->db->query('SELECT * FROM `material_log` WHERE log_contact_id = '.$id);
 			$data = $query->result_array();

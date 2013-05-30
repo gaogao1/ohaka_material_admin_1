@@ -75,7 +75,7 @@ num_item=document.url.item.selectedIndex;
 						</div>
 						<div class="btn_group">
 							<input class="btn update" type="submit" value="更新" name="submit">		
-							<input class="btn signup" type="button" value="登録">
+							<input class="btn signup" type="button" value="登録" onClick="location.href='./material_user_new'">
 						</div>
 					</div>
 				
@@ -101,15 +101,34 @@ num_item=document.url.item.selectedIndex;
 for($i=0;$i<count($material_user);$i++){
 ?>							
 						<tr>
+							<!-- no -->
 							<td><?php echo $i; ?></td>
+							
+							<!-- ID -->
 							<input type="hidden" name="<?php echo 'post_data'."[$i]"."[contact_id]"; ?>" value="<?php echo $material_user[$i]["contact_id"]; ?>">
+							
+							<!-- 名前 -->
 							<td><a href="/admin/material_user_detail?id=<?php echo $material_user[$i]["contact_id"]; ?>"><?php echo $material_user[$i]["contact_name"]; ?></a></td>
+							
+							<!-- 受付日時 -->
 							<td><input type="text" name="<?php echo 'post_data'."[$i]"."[contact_date]"; ?>" value="<?php echo $material_user[$i]["contact_date"]; ?>" /></td>
+							
+							<!-- 経過日数 -->
 							<td><?php echo floor((strtotime($material_user[$i]["contact_date"])-strtotime(date("Y-m-d h:i:s")))/(3600*24)); ?>日</td>
+							
+							<!-- 石材店名 -->
 							<td><input type="text" name="<?php echo 'post_data'."[$i]"."[contact_stone_name]"; ?>" value="<?php echo $material_user[$i]["contact_stone_name"]; ?>" /></td>
+							
+							<!-- 霊園 -->
 							<td><?php print_r($material_reien_name[$i][0]["ohaka_name"]); ?></td>
+							
+							<!-- 特記事項 -->
 							<td><textarea placeholder="<?php echo $material_user[$i]["contact_other"]; ?>"  name="<?php echo 'post_data'."[$i]"."[contact_other]"; ?>" ></textarea></td>
+							
+							<!-- 担当 -->
 							<td><input type="text" name="<?php echo 'post_data'."[$i]"."[contact_charge]"; ?>" value="<?php echo $material_user[$i]["contact_charge"]; ?>" /></td>							
+							
+							<!-- 手紙 -->
 							<td>
 								<select name="<?php echo 'post_data'."[$i]"."[contact_letter]"; ?>" id="">
 									<option value="<?php echo $material_user[$i]["contact_letter"]; ?>" selected="selected"><?php echo $material_user[$i]["contact_letter"]; ?></option>
@@ -119,7 +138,11 @@ for($i=0;$i<count($material_user);$i++){
 									<option value="3">済</option>
 								</select>
 							</td>
+							
+							<!-- つい客状況 -->
 							<td><a href="/admin/material_user_log?id=<?php echo $material_user[$i]["contact_id"]; ?>">追客</a></td>
+							
+							<!-- 進捗 -->
 							<td>
 								<select name="<?php echo 'post_data'."[$i]"."[contact_progress]"; ?>" id="">
 									<option value="<?php echo $material_user[$i]["contact_progress"]; ?>" selected="selected"><?php echo $material_user[$i]["contact_progress"]; ?></option>
