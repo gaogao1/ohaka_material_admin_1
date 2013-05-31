@@ -21,7 +21,7 @@
 <body>
 	<div class="container">
 		<div class="header">
-			<h1 class="branding"><a href="">お墓探しナビ	管理画面</a></h1>
+			<h1 class="branding"><a href="material_user">お墓探しナビ	管理画面</a></h1>
 			<div class="navbar">
 				<div class="row">
 				</div>	
@@ -65,12 +65,29 @@
 									<option value="<?php echo $detail[0]["contact_amount_min"]; ?>" selected><?php echo $detail[0]["contact_amount_min"]; ?></option>								
 									<option value="10">10</option>
 									<option value="20">20</option>
+									<option value="30">30</option>
+									<option value="40">40</option>
+									<option value="50">50</option>
+									<option value="75">75</option>
+									<option value="100">100</option>
+									<option value="150">150</option>
+									<option value="200">200</option>
+									<option value="250">250</option>		
 								</select>
 								-
 								<select name="contact_amount_max" id="">
 									<option value="<?php echo $detail[0]["contact_amount_max"]; ?>" selected><?php echo $detail[0]["contact_amount_max"]; ?></option>									
-									<option value="10">10</option>
 									<option value="20">20</option>
+									<option value="30">30</option>
+									<option value="40">40</option>
+									<option value="50">50</option>
+									<option value="75">75</option>
+									<option value="100">100</option>
+									<option value="150">150</option>
+									<option value="200">200</option>
+									<option value="250">250</option>									
+									<option value="300">300</option>									
+									
 								</select>
 								万円
 							</td>
@@ -79,9 +96,12 @@
 							<th>完成時期</th>
 								<td>
 									<select name="contact_fin" id="">
-									<option value="<?php echo $detail[0]["contact_fin"]; ?>" selected><?php echo $detail[0]["contact_fin"]; ?></option>										
-									  <option value="2013">2013</option>
-									  <option value="2014">2014</option>
+									<option value="<?php echo $detail[0]["contact_fin"]; ?>" selected><?php echo $detail[0]["contact_fin"]; ?></option>
+									
+									  <option value="3ヶ月以内">3ヶ月以内</option>
+									  <option value="6ヶ月以内">6ヶ月以内</option>
+									  <option value="1年以内">1年以内</option>
+									<option value="未定">未定</option>								  
 									</select> 
 								</td>
 						</tr>
@@ -124,11 +144,11 @@
 						</tr>
 						<tr>
 							<th>お客様の特徴</th>
-							<td><textarea placeholder="contact_char"  name="contact_char" ><?php echo $detail[0]["contact_chara"]; ?></textarea></td>
+							<td><textarea name="contact_chara" ><?php echo $detail[0]["contact_chara"]; ?></textarea></td>
 						</tr>
 						<tr>
 							<th>資料請求意見</th>
-							<td><textarea placeholder="contact_detail"  name="contact_detail"><?php echo $detail[0]["contact_detail"]; ?></textarea></td>
+							<td><textarea  name="contact_detail"><?php echo $detail[0]["contact_detail"]; ?></textarea></td>
 						</tr>
 					</table>
 					<div class="event_tbl">

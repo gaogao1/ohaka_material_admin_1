@@ -91,7 +91,8 @@ class Admin extends CI_Controller {
 		if($this->input->post('submit')!=NULL){
 				$data["detail"] = array(
 					'contact_id' => $this->input->post('contact_id'),		
-					'contact_name' => $this->input->post('contact_name'),				
+					'contact_name' => $this->input->post('contact_name'),
+					'contact_reien' => $this->input->post('contact_reien'),					
 					'contact_ad_id' => $this->input->post('contact_ad_id'),					
 					'contact_address' => $this->input->post('contact_address'),
 					'contact_tel' => $this->input->post('contact_tel'),
@@ -141,6 +142,7 @@ class Admin extends CI_Controller {
 				$data = array(
 					'post_data' => $this->input->post('post_data'),			
 				 );		 
+				 
 			$this->db->where('log_id', $data["post_data"][$i]["log_id"]);
 			$this->db->update('material_log', $data["post_data"][$i]);		
 			}

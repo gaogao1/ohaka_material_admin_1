@@ -123,7 +123,7 @@ for($i=0;$i<count($material_user);$i++){
 							<td><?php print_r($material_reien_name[$i][0]["ohaka_name"]); ?></td>
 							
 							<!-- 特記事項 -->
-							<td><textarea placeholder="<?php echo $material_user[$i]["contact_other"]; ?>"  name="<?php echo 'post_data'."[$i]"."[contact_other]"; ?>" ></textarea></td>
+							<td><textarea name="<?php echo 'post_data'."[$i]"."[contact_other]"; ?>"><?php echo $material_user[$i]["contact_other"]; ?></textarea></td>
 							
 							<!-- 担当 -->
 							<td><input type="text" name="<?php echo 'post_data'."[$i]"."[contact_charge]"; ?>" value="<?php echo $material_user[$i]["contact_charge"]; ?>" /></td>							
@@ -132,10 +132,10 @@ for($i=0;$i<count($material_user);$i++){
 							<td>
 								<select name="<?php echo 'post_data'."[$i]"."[contact_letter]"; ?>" id="">
 									<option value="<?php echo $material_user[$i]["contact_letter"]; ?>" selected="selected"><?php echo $material_user[$i]["contact_letter"]; ?></option>
-									<option value="0">-</option>
-									<option value="1">出す</option>
-									<option value="2">出さない</option>
-									<option value="3">済</option>
+									<option value="-">-</option>
+									<option value="出す">出す</option>
+									<option value="出さない">出さない</option>
+									<option value="済">済</option>
 								</select>
 							</td>
 							
@@ -146,15 +146,15 @@ for($i=0;$i<count($material_user);$i++){
 							<td>
 								<select name="<?php echo 'post_data'."[$i]"."[contact_progress]"; ?>" id="">
 									<option value="<?php echo $material_user[$i]["contact_progress"]; ?>" selected="selected"><?php echo $material_user[$i]["contact_progress"]; ?></option>
-									<option value="0">-</option>
-									<option value="1">交渉中</option>
-									<option value="2">見積もり</option>
-									<option value="3">見学済</option>
-									<option value="4">見学予定</option>
-									<option value="5">資料送付</option>
-									<option value="6">紹介先探し中</option>
-									<option value="7">長期検討</option>
-									<option value="8">未接触</option>
+									<option value="-">-</option>
+									<option value="交渉中">交渉中</option>
+									<option value="見積もり">見積もり</option>
+									<option value="見学済">見学済</option>
+									<option value="見学予定">見学予定</option>
+									<option value="資料送付">資料送付</option>
+									<option value="紹介先探し中">紹介先探し中</option>
+									<option value="長期検討">長期検討</option>
+									<option value="未接触">未接触</option>
 								</select>
 							</td>	
 						</tr>
